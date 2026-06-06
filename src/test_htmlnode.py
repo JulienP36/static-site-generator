@@ -7,7 +7,7 @@ class TestHTMLNode(unittest.TestCase):
 
     def test_repr(self):
         node = HTMLNode("h1", "This is a heading")
-        print(node)
+        self.assertEqual(repr(node), "HTMLNode(h1, This is a heading, children: None, None)")
     
     def test_props_to_html_filled(self):
         node = HTMLNode(None, None, None, {"href": "https://www.boot.dev", "target": "_blank"})
