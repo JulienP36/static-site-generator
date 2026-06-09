@@ -1,5 +1,5 @@
 import unittest
-from markdown_operations import *
+from markdown_ops_inline import *
 
 class TestSplitNodeDelimiter(unittest.TestCase):
 
