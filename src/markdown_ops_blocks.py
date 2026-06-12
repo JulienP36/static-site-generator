@@ -9,7 +9,7 @@ class BlockType(Enum):
     UNORD_LIST = "unordered_list"
     ORD_LIST = "ordered_list"
 
-def markdown_to_blocks(markdown: str) -> list[str]:
+def markdown_to_blocks(markdown: str) -> list[str]: # takes markdown text and returns a list of blocks.
     blocks = markdown.split("\n\n")
     cleaned_blocks = []
     for block in blocks:
@@ -19,7 +19,7 @@ def markdown_to_blocks(markdown: str) -> list[str]:
         cleaned_blocks.append(stripped_block)
     return cleaned_blocks
 
-def block_to_block_type(block: str) -> BlockType:
+def block_to_block_type(block: str) -> BlockType: # takes a markdown block and returns the corresponding block type.
     lines = block.split("\n")
 
     if block.startswith(("# ", "## ", "### ", "#### ", "##### ", "###### ")):
@@ -45,3 +45,8 @@ def block_to_block_type(block: str) -> BlockType:
         return BlockType.ORD_LIST
 
     return BlockType.PARAGRAPH
+
+def markdown_to_html_node(md_text: str): # Converts a Markdown document to an HTMLNode with HTMLNode childs (nested elements).
+    lines = md_text.split("\n")
+    block_type = get
+    pass

@@ -6,7 +6,8 @@ def split_nodes_delimiter(
         old_nodes: list[TextNode],
         delimiter: str,
         text_type: TextType
-    ) -> list[TextNode]:
+    ) -> list[TextNode]: # Takes a list of TextNodes and returns a modified list of TextNodes using a delimiter
+                         # and a text type to apply to the text inside delimiters.
     new_nodes = []
     for node in old_nodes:
         if node.text_type != TextType.TEXT:
@@ -26,7 +27,7 @@ def split_nodes_delimiter(
            
     return new_nodes
 
-def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
+def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]: # Does a similar job as split_nodes_delimiter but for image links.
     new_nodes = []
     for node in old_nodes:
         if node.text_type != TextType.TEXT:
@@ -49,7 +50,7 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
                 new_nodes.append(TextNode(text_left, TextType.TEXT))
     return new_nodes
 
-def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
+def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]: # Same as split_nodes_image, but for links.
     new_nodes = []
     for node in old_nodes:
         if node.text_type != TextType.TEXT:
@@ -72,15 +73,15 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
                 new_nodes.append(TextNode(text_left, TextType.TEXT))
     return new_nodes
 
-def extract_markdown_images(text: str) -> list[tuple[str, str]]:
+def extract_markdown_images(text: str) -> list[tuple[str, str]]: # Regex to extract Markdown images.
     matches = re.findall(r"!\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
     return matches
 
-def extract_markdown_links(text: str) -> list[tuple[str, str]]:
+def extract_markdown_links(text: str) -> list[tuple[str, str]]: # Regex to extract Markdown links.
     matches = re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
     return matches
 
-def text_to_textnodes(text: str) -> list[TextNode]:
+def text_to_textnodes(text: str) -> list[TextNode]: # Takes a Markdown text and returns a list of text nodes using all functions above.
     new_nodes = []
     new_nodes = split_nodes_image([TextNode(text, TextType.TEXT)])
     new_nodes = split_nodes_link(new_nodes)
