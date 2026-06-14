@@ -90,5 +90,4 @@ def text_to_textnodes(text: str) -> list[TextNode]: # Takes a Markdown text and 
     new_nodes = split_nodes_delimiter(new_nodes, "_", TextType.ITALIC) # split italic blocks (_)
     new_nodes = split_nodes_delimiter(new_nodes, "*", TextType.ITALIC) # split italic blocks (*)
 
-    print(f"DEBUG ::: new_nodes = {new_nodes}")
     return new_nodes
