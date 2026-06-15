@@ -118,3 +118,12 @@ def text_to_children(text: str) -> list[HTMLNode]: # Makes the leaf nodes
     for child in child_nodes:
         html_childrens.append(text_node_to_html_node(child))
     return html_childrens
+
+def extract_title(markdown: str) -> str:
+    md_lines = markdown.split("\n")
+    for line in md_lines:
+        if line.startswith("# "):
+            title = line.removeprefix("#").strip()
+            return title
+
+    raise Exception("No Markdown h1 title found")

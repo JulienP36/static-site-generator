@@ -170,3 +170,25 @@ the **same** even with inline stuff
             html,
             "<div><pre><code>This is text that _should_ remain\nthe **same** even with inline stuff\n</code></pre></div>"
         )
+
+    def test_extract_title_valid(self):
+        md = """
+Intro paragraph
+
+# This is a cool h1 title ! 
+
+Content paragraph
+"""
+        title = extract_title(md)
+        self.assertEqual(title, "This is a cool h1 title !")
+    
+    def test_extract_title_invalid(self):
+        md = """ 
+Intro paragraph
+
+## Incorrect title !
+
+bla bla bla
+"""
+        with self.assertRaises(Exception):
+            extract_title(md)
